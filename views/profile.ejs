@@ -10,8 +10,9 @@
     <div id="card">
         <img id="avatar" src="https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D" alt="avatar" />
         <div id="info">
-          <p id="name">Julia Stone</p>
-          <p id="activity">Photographer and Web designer</p>
+          <p id="name"><%= user.fullname  %></p>
+          <p id="name">@<%=user.username %></p>
+          <p id="activity">Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
           <div id="stats">
             <p class="stats-text">
               <svg viewBox="0 0 24 24">
@@ -36,7 +37,7 @@
               posts
             </p>
           </div>
-          <p id="btn">Follow</p>
+          <a href="/logout" id="btn">Log Out</a>
         </div>
       </div>
 

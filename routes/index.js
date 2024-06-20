@@ -25,8 +25,12 @@ router.get("/login", function (req, res, next) {
   res.render("login", {error: req.flash('error')});
 });
 
-router.get("/profile", isLoggedIn ,function (req, res, next) {
-  res.render('profile')
+router.get("/profile", isLoggedIn ,async function (req, res, next) {
+  const user = await userModel.findOne({
+    username: req.session.passport.user  //This is **IMP NOTE
+  })
+  console.log(user.username);
+  res.render('profile', {user})
 });
 
 router.post('/register', function(req, res){   
