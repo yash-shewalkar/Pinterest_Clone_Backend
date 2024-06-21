@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Define the Post Schema
 const postSchema = new mongoose.Schema({
-    postText: {
+    imageText: {
         type: String,
         required: true,
         trim: true
@@ -10,6 +10,10 @@ const postSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    image: {
+        type: String,
+        default: "new Post"
     },
     likes: {
         type: Array,

@@ -1,95 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./stylesheets/profile.css">
-</head>
-<body>
-    <div id="card">
-        <img id="avatar" src="https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D" alt="avatar" />
-        <div id="info">
-          <p id="name"><%= user.fullname  %></p>
-          <p id="name">@<%=user.username %></p>
-          <p id="activity">Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
-          <div id="stats">
-            <p class="stats-text">
-              <svg viewBox="0 0 24 24">
-                <path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
-              </svg>
-              <span>5k</span>
-              followers
-            </p>
-            <p class="stats-text">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 9a3.75 3.75 0 100 7.5A3.75 3.75 0 0012 9z" />
-                <path fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 015.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 01-3 3h-15a3 3 0 01-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 001.11-.71l.822-1.315a2.942 2.942 0 012.332-1.39zM6.75 12.75a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0zm12-1.5a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
-              </svg>
-              <span>147</span>
-              photos
-            </p>
-            <p class="stats-text">
-              <svg viewBox="0 0 24 24">
-                <path d="M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5a3 3 0 00-2.684 1.657zM2.25 12a3 3 0 013-3h13.5a3 3 0 013 3v6a3 3 0 01-3 3H5.25a3 3 0 01-3-3v-6zM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 016.75 6h10.5a3 3 0 012.683 1.657A4.505 4.505 0 0018.75 7.5H5.25z" />
-              </svg>
-              <span>93</span>
-              posts
-            </p>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./stylesheets/profile.css" />
+  </head>
+  <body>
+    <script>
+      function showForm() {
+        document.getElementById("uploadpost").style.display = "block";
+      }
+    </script>
+    <div class="container mt-4">
+      <div id="card" class="row">
+        <div class="col-md-4">
+          <img
+            id="avatar"
+            src="https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
+            alt="avatar"
+            class="img-fluid rounded"
+          />
+        </div>
+        <div class="col-md-8">
+          <div id="info">
+            <p id="name"><%= user.fullname %></p>
+            <p id="username">@<%= user.username %></p>
+            <p id="activity">Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
+            <div id="stats" class="d-flex justify-content-between">
+              <p class="stats-text">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z"
+                  />
+                </svg>
+                <span>5k</span>
+                followers
+              </p>
+              <p class="stats-text">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 9a3.75 3.75 0 100 7.5A3.75 3.75 0 0012 9z" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M9.344 3.071a49.52 49.52 0 015.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 01-3 3h-15a3 3 0 01-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 001.11-.71l.822-1.315a2.942 2.942 0 012.332-1.39zM6.75 12.75a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0zm12-1.5a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>147</span>
+                photos
+              </p>
+              <p class="stats-text">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5a3 3 0 00-2.684 1.657zM2.25 12a3 3 0 013-3h13.5a3 3 0 013 3v6a3 3 0 01-3 3H5.25a3 3 0 01-3-3v-6zM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 016.75 6h10.5a3 3 0 012.683 1.657A4.505 4.505 0 0018.75 7.5H5.25z"
+                  />
+                </svg>
+                <span>93</span>
+                posts
+              </p>
+            </div>
+            <button id="btn" onclick="showForm()" class="btn btn-primary">Post</button>
+            <form 
+              id="uploadpost"
+              action="/upload"
+              method="post"
+              enctype="multipart/form-data"
+              class="mt-3"
+            >
+              <input type="text" name="imageText" placeholder="Add caption" class="form-control mb-2" />
+              <input type="file" name="file" class="form-control mb-2" />
+              <button type="submit" class="btn btn-success">Upload</button>
+            </form>
+            <a href="/logout" class="btn btn-danger mt-3" id="Logoutbtn">Log Out</a>
           </div>
-          <a href="/logout" id="btn">Log Out</a>
         </div>
       </div>
+    </div>
 
-      <div id="board">
-        <div class="container">
-            <link rel="stylesheet" href="./stylesheets/cards.css">
-            <div class="cards">
-              
-              <div class="card">
-                <div class="card__img">
-                  <img src="https://i.ibb.co/n8k943H/fotorama7.jpg" alt="">
-                </div>
-                <div class="cart__content">
-                  <h2>Titre</h2>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat error ea necessitatibus. Esse, iusto earum!</p>
-                       
-                  <a href="">See more</a>
-                
-                </div>
-              </div>
-              
-               <div class="card">
-                <div class="card__img">
-                  <img src="https://i.ibb.co/n8k943H/fotorama7.jpg" alt="">
-                </div>
-                <div class="cart__content">
-                  <h2>Titre</h2>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat error ea necessitatibus. Esse, iusto earum!</p>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, dolorum eveniet. Ab!</p>
-                          
-                  <a href="">See more</a>
-              
-                </div>
-              </div>
-              
-               <div class="card">
-                <div class="card__img">
-                  <img src="https://i.ibb.co/n8k943H/fotorama7.jpg" alt="">
-                </div>
-                <div class="cart__content">
-                  <h2>Titre</h2>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat error ea necessitatibus. Esse, iusto earum!</p>
-                 
-                    <a href="">See more</a>
-                 
-                </div>
-              </div>
-          
-            </div>
-            
-            
+    <div id="board" class="container mt-4">
+      <div class="cards row">
+        <% user.posts.forEach(function(post){ %>
+        <div class="card col-md-4 mb-4">
+          <div class="card__img">
+            <img src="/images/uploads/<%= post.image %>" alt="" class="img-fluid" />
           </div>
+          <div class="cart__content p-3">
+            <h2><%= post.imageText %></h2>
+          </div>
+        </div>
+        <% }) %>
       </div>
-</body>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>
