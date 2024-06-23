@@ -1,39 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap");
 
 body {
-  height: calc(100vh - 50px);
-  font-family: 'Nunito', sans-serif;
-  letter-spacing: .1px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background: #EEEEEE;
-  padding: 20px;
+  font-family: "Nunito", sans-serif;
+  letter-spacing: 0.1px;
+  background: #eeeeee;
   margin: 0;
+  padding: 20px;
 }
 
 #card {
-  width: 100%;
   max-width: 650px;
-  height: auto;
-  margin: auto;
-  padding: 15px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  position: relative;
-  top: 0;
+  padding: 15px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
 }
 
 #avatar {
   width: 100%;
-  height: auto;
-  object-fit: cover;
   border-radius: 8px;
+  object-fit: cover;
 }
 
 #info {
@@ -43,44 +34,36 @@ body {
   flex-direction: column;
 }
 
-#name, #username {
+#name,
+#username {
   font-size: 24px;
   font-weight: 800;
   margin: 0;
-  padding: 0;
 }
 
 #activity {
   color: #999999;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: -.5px;
   margin: 0;
-  padding: 0;
 }
 
 #stats {
-  margin: auto 0 15px 0;
-  padding: 0;
+  margin: 15px 0;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 }
 
 .stats-text {
-  color: #5B5B5B;
+  color: #5b5b5b;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: -1px;
-  margin: 0;
-  padding: 0;
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
 .stats-text svg {
-  fill: #5B5B5B;
+  fill: #5b5b5b;
   width: 20px;
   height: 20px;
 }
@@ -88,12 +71,12 @@ body {
 .stats-text span {
   color: #000000;
   font-weight: 800;
-  margin: 0 5px;
+  margin-left: 5px;
 }
 
-#Logoutbtn, #btn {
-  text-decoration: none;
-  color: #FFFFFF;
+#btn,
+#Logoutbtn {
+  color: #ffffff;
   font-size: 20px;
   font-weight: 600;
   text-align: center;
@@ -117,73 +100,57 @@ body {
 }
 
 #board {
-  width: 100%;
   max-width: 1300px;
   margin: 10px auto;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; 
-  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 15px;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  align-items: start;
+  position: relative;
 }
 
 .card {
   flex: 1 1 calc(33.333% - 10px);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: #fff;
   border-radius: 6px;
-  margin: 0 0 1rem 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .card__img {
   width: 100%;
   border-radius: 6px 6px 0 0;
-  overflow: hidden;
 }
 
 .card__img img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  display: block;
+  margin-top: 15px;
+  border-radius: 8px;
 }
 
-.cart__content {
-  padding: 1rem;
+.card__content {
+  padding: 15px;
+  text-align: center;
 }
 
-.cart__content a {
-  display: inline-block;
-  background-color: #0041c2;
-  color: #fff;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  margin: 1rem 0 0 0;
-}
-
-@media screen and (max-width: 991px) {
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
+@media (max-width: 991px) {
   .card {
-    flex: 1 1 100%;
+    flex: 1 1 calc(50% - 10px);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   #card {
     flex-direction: column;
     align-items: center;
@@ -191,20 +158,81 @@ body {
 
   #avatar {
     width: 100%;
-    max-width: 100%;
-    height: auto;
     margin-bottom: 15px;
   }
 
   #info {
     margin-left: 0;
+    text-align: center;
+  }
+
+  .card {
+    flex: 1 1 100%;
   }
 }
 
-@media (min-width: 768px) {
-  .col-md-4 {
-      -ms-flex: 0 0 33.333333%;
-      flex: 0 0 33.333333%;
-      max-width: 19.333333%;
-  }
+/* profile upload */
+h1 small {
+  display: block;
+  font-size: 15px;
+  padding-top: 8px;
+  color: gray;
+}
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+.avatar-upload .avatar-edit {
+  position: absolute;
+  right: 12px;
+  z-index: 1;
+  top: 10px;
+}
+.avatar-upload .avatar-edit input {
+  display: none;
+}
+.avatar-upload .avatar-edit input + label {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+.avatar-upload .avatar-edit input + label:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+.avatar-upload .avatar-edit input + label:after {
+  content: "\f040";
+  font-family: "FontAwesome";
+  color: #757575;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+.avatar-upload .avatar-preview {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  border-radius: 100%;
+  border: 6px solid #f8f8f8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
