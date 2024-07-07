@@ -11,16 +11,16 @@ const postSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    image: {
+    image: {   // name(file name) of the image 
         type: String,
         default: "new Post"
     },
-    likes: {
+    likes: {  // ids of the users will be stored
         type: Array,
         default: []
     },
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,  // datatype of uuid 
         ref: 'User',
         required: true
     }

@@ -8,15 +8,20 @@ const localStrategy = require("passport-local")
 passport.use(new localStrategy(userModel.authenticate()));
 const path = require("path")
 
-const upload = require('./multer')
+const upload = require('./multer');
+const Post = require("./posts");
+
+
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-  res.send('hello')
+router.get("/", async function (req, res, next) {
+  const posts = await Post.find({}).populate('user');
+  res.render("feed", {posts});
 });
 
-router.get("/feed", function (req, res, next) {
-  res.render("feed");
+router.get("/feed", async function (req, res, next) {
+  const posts = await Post.find({}).populate('user');
+  res.render("feed", {posts});
 });
 
 router.get("/signin", function (req, res, next) {
