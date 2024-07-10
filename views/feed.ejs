@@ -25,7 +25,7 @@
    </nav>
 
 <header>
- <h1>Pinterest Style Image Galley with Responsive Navigation Bar</h1>
+ <h1>Pinterest Image Galley</h1>
 </header> 
 
  
@@ -44,7 +44,9 @@
     <div class="box">
         <img src="/images/uploads/<%= post.image %>" alt="<%= post.title %>" class="src">
         <div class="caption" style="display: flex;">
-            <div class="caption" style="color: aquamarine; margin-right: 5px;">@<%= post.user.username %></div>
+            <% const username = post.user.username %>
+           
+            <div class="caption" style="margin-right: 5px;"><a style="text-decoration: none; color: aquamarine;" href="usersprofile/<%= username %>" >@<%= username %> </a></div>
             <div class="caption" style="text-align: center;"><%= post.imageText %>  </div>
         </div>
        

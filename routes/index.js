@@ -33,12 +33,17 @@ router.get("/login", function (req, res, next) {
   res.render("login", {error: req.flash('error')});
 });
 
-router.get("/profile", isLoggedIn ,async function (req, res, next) {
-  const user = await userModel.findOne({
-    username: req.session.passport.user  //This is **IMP NOTE
-  }).populate('posts')
-  console.log(user.username);
-  res.render('profile', {user})
+router.get("/profile/:username", isLoggedIn, async function (req, res, next) {
+  const username = req.params.username;
+  const loggedInUser = req.session.passport.user;
+
+  if (username !== loggedInUser) {
+    // If the username in the URL does not match the logged-in user's username, redirect to the user's profile 
+    return res.redirect(`/profile/${loggedInUser}`);
+  }
+
+  const user = await userModel.findOne({ username: loggedInUser }).populate('posts');
+  res.render('profile', { user });
 });
 
 router.post('/register', function(req, res){   
@@ -50,22 +55,33 @@ router.post('/register', function(req, res){
   userModel.register(userData, req.body.password)
     .then(function(){
       passport.authenticate('local')(req,res, function(){
-        res.redirect('/profile');
+        res.redirect(`/profile/${userData.username}`);
       })
     })
 })
 
 router.post('/login', passport.authenticate('local',{
-  successRedirect: "/profile",
+  // successRedirect: "/profile",
   failureRedirect: "/login",
   failureFlash: true,
-}), function(req,res){})
+}), function(req,res){
+  const username = req.user.username;
+  res.redirect(`/profile/${username}`);
+})
 
 router.get('/logout', function(req,res){
   req.logout(function(err) {
     if (err) { return next(err); }
     res.redirect('/');
   });
+})
+router.get('/usersprofile/:user',async function(req,res){
+  const username = req.params.user
+  const user = await userModel.findOne({ username}).populate('posts');
+  if(user == null){
+    res.send(`User with username: ${username} does not exists ,  Please enter a valid username`)
+  }
+  res.render('usersprofile', {user})
 })
 
 function isLoggedIn(req,res,next)
@@ -92,7 +108,7 @@ router.post('/upload',isLoggedIn, upload.single('file'), async function (req, re
   });
   user.posts.push(postData._id)
   await user.save()
-  res.redirect('/profile')
+  res.redirect(`/profile/${user.username}`)
 })
 
 
