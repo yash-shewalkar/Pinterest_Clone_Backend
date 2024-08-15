@@ -15,14 +15,15 @@ const Post = require("./posts");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
+  const uname = req.params.username;
   const posts = await Post.find({}).populate('user');
-  res.render("feed", {posts});
+  res.render("feed", {posts, path: req.path,uname});
 });
 
-router.get("/feed", async function (req, res, next) {
-  const posts = await Post.find({}).populate('user');
-  res.render("feed", {posts});
-});
+// router.get("/feed",isLoggedIn, async function (req, res, next) {
+//   const posts = await Post.find({}).populate('user');
+//   res.render("feed", {posts,path: req.path});
+// });
 
 router.get("/signin", function (req, res, next) {
   res.render("signin");
@@ -43,7 +44,20 @@ router.get("/profile/:username", isLoggedIn, async function (req, res, next) {
   }
 
   const user = await userModel.findOne({ username: loggedInUser }).populate('posts');
-  res.render('profile', { user });
+  res.render('profile', { user,username });
+});
+
+router.get('/feed/:username', isLoggedIn, async function (req, res, next) {
+  const uname = req.params.username;
+  const posts = await Post.find({}).populate('user');
+  const username = req.params.username;
+  const loggedInUser = req.session.passport.user;
+
+  if (username !== loggedInUser) {
+    // If the username in the URL does not match the logged-in user's username, redirect to the user's profile 
+    return res.redirect(`/feed/${loggedInUser}`);
+  }
+  res.render('feed', { uname, path: req.path ,posts});
 });
 
 router.post('/register', function(req, res){   
@@ -69,10 +83,10 @@ router.post('/login', passport.authenticate('local',{
   res.redirect(`/profile/${username}`);
 })
 
-router.get('/logout', function(req,res){
+router.get('/logout/', function(req,res){
   req.logout(function(err) {
     if (err) { return next(err); }
-    res.redirect('/');
+    res.redirect('/login' );
   });
 })
 router.get('/usersprofile/:user',async function(req,res){
@@ -110,40 +124,5 @@ router.post('/upload',isLoggedIn, upload.single('file'), async function (req, re
   await user.save()
   res.redirect(`/profile/${user.username}`)
 })
-
-
-// router.get("/createUser", async function (req, res, next) {
-//   const newUser = await userModel.create({
-//     username: "ram",
-//     password: "ramesh",
-//     email: "ram@gmail.com",
-//     dp: " ",
-//     fullname: "ram ji",
-//   });
-//   res.send(newUser);
-// });
-
-// router.get("/createPost",async function (req, res, next) {
-//   const newPost = await postModel.create({
-//     postText: "hey its 3rd  post!",
-//     user: "6673fc2de379b164838126a7",
-//     likes: ['6673fe8ad5619235acf9b884','6673fc2de379b164838126a7'],
-//   });
-//   let user = await userModel.findOne({_id :"6673fc2de379b164838126a7" })
-//   user.posts.push(newPost._id)
-//   await user.save()
-//   res.send(newPost);
-// });
-
-// router.get("/allUserPosts",async function (req, res, next) {
-  
-//   let userposts = await userModel
-//     .findOne({_id :"6673fc2de379b164838126a7" })
-//     .populate('posts')
-
-//   res.send(userposts);
-// });
-
-
 
 module.exports = router;

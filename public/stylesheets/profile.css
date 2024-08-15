@@ -17,7 +17,6 @@ body {
   margin: auto;
   display: flex;
   align-items: center;
-  display: flex;
   flex-direction: row;
 }
 
@@ -116,7 +115,7 @@ body {
 }
 
 .card {
-  flex: 1 1 calc(33.333% - 10px);
+  flex: 1 1 calc(16.66% - 10px); /* 6 columns grid */
   background: #fff;
   border-radius: 6px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -144,12 +143,21 @@ body {
   text-align: center;
 }
 
-@media (max-width: 991px) {
+/* Adjust for medium screens (4 columns grid) */
+@media (max-width: 1200px) {
   .card {
-    flex: 1 1 calc(50% - 10px);
+    flex: 1 1 calc(25% - 10px); /* 4 columns grid */
   }
 }
 
+/* Adjust for smaller screens (3 columns grid) */
+@media (max-width: 991px) {
+  .card {
+    flex: 1 1 calc(33.33% - 10px); /* 3 columns grid */
+  }
+}
+
+/* Adjust for small screens (2 columns grid) */
 @media (max-width: 768px) {
   #card {
     flex-direction: column;
@@ -157,8 +165,14 @@ body {
   }
 
   #avatar {
-    width: 100%;
+    width: 20rem;
     margin-bottom: 15px;
+  }
+
+  #avatar-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
   }
 
   #info {
@@ -167,31 +181,53 @@ body {
   }
 
   .card {
-    flex: 1 1 100%;
+    flex: 1 1 calc(50% - 10px); /* 2 columns grid */
   }
 }
 
-/* profile upload */
+/* Adjust for very small screens (1 column grid) */
+@media (max-width: 480px) {
+  .card {
+    flex: 1 1 100%; /* 1 card per row */
+  }
+
+  #avatar {
+    width: 10rem;
+    margin-bottom: 15px;
+  }
+
+  #avatar-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Profile upload styles */
 h1 small {
   display: block;
   font-size: 15px;
   padding-top: 8px;
   color: gray;
 }
+
 .avatar-upload {
   position: relative;
   max-width: 205px;
   margin: 50px auto;
 }
+
 .avatar-upload .avatar-edit {
   position: absolute;
   right: 12px;
   z-index: 1;
   top: 10px;
 }
+
 .avatar-upload .avatar-edit input {
   display: none;
 }
+
 .avatar-upload .avatar-edit input + label {
   display: inline-block;
   width: 34px;
@@ -205,10 +241,12 @@ h1 small {
   font-weight: normal;
   transition: all 0.2s ease-in-out;
 }
+
 .avatar-upload .avatar-edit input + label:hover {
   background: #f1f1f1;
   border-color: #d6d6d6;
 }
+
 .avatar-upload .avatar-edit input + label:after {
   content: "\f040";
   font-family: "FontAwesome";
@@ -220,6 +258,7 @@ h1 small {
   text-align: center;
   margin: auto;
 }
+
 .avatar-upload .avatar-preview {
   width: 192px;
   height: 192px;
@@ -228,6 +267,7 @@ h1 small {
   border: 6px solid #f8f8f8;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
+
 .avatar-upload .avatar-preview > div {
   width: 100%;
   height: 100%;

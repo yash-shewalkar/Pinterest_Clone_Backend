@@ -51,7 +51,24 @@ nav{
 .navLink a:hover{
    color: #588275;
 }
-
+.signin a{
+	color: aquamarine;
+	text-decoration: none;
+	letter-spacing: 2px;
+	font-size: 16px;
+	background-color: #000000;
+}
+.signin {
+	color: aquamarine;
+	text-decoration: none;
+	letter-spacing: 2px;
+	font-size: 16px;
+	background-color: #000000;
+}
+.signin a:hover{
+	color: #588275;
+	text-decoration: underline;
+}
 .lines{
 	display: none;
 	cursor:  crosshair;
