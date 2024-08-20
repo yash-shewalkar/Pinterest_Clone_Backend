@@ -92,10 +92,15 @@ router.get('/logout/', function(req,res){
 router.get('/usersprofile/:user',async function(req,res){
   const username = req.params.user
   const user = await userModel.findOne({ username}).populate('posts');
+  let loggedInUser = null
+  if(req.isAuthenticated()){
+
+     loggedInUser  = req.session.passport.user;
+  }
   if(user == null){
     res.send(`User with username: ${username} does not exists ,  Please enter a valid username`)
   }
-  res.render('usersprofile', {user})
+  res.render('usersprofile', {user, loggedInUser})
 })
 
 function isLoggedIn(req,res,next)
@@ -124,5 +129,7 @@ router.post('/upload',isLoggedIn, upload.single('file'), async function (req, re
   await user.save()
   res.redirect(`/profile/${user.username}`)
 })
+
+
 
 module.exports = router;
