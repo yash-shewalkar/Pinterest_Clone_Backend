@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const passport = require("passport");
 const plm = require('passport-local-mongoose')
-mongoose.connect("mongodb://127.0.0.1:27017/cloneApp1");
-
+const config = require('../config.js')
 // Define the User Schema
-const userSchema = new mongoose.Schema({
+
+mongoose.connect(config.db_uri);
+
+const userSchema = new mongoose.Schema({           
     username: {
         type: String,
        
