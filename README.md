@@ -1,4 +1,4 @@
-# Printerest Clone , A backend project 
+# My Image Gallery , A backend project 
 TECH STACK :
   - NodeJS
   - Express
